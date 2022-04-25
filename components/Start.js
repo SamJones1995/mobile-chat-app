@@ -10,7 +10,7 @@ export default class Start extends React.Component {
 
     this.state = {
       name: '',
-      bgColor: this.colors.black,
+      bgColor: this.colors.orange,
     }  
   };
 
@@ -20,7 +20,7 @@ export default class Start extends React.Component {
   };
 
   colors = {
-    black: "#090C08",
+    orange: "#FFA686",
     navy: "#474056",
     blue: "#8A95A5",
     green: "#B9C6AE",
@@ -61,15 +61,15 @@ export default class Start extends React.Component {
             <View style={styles.colorArray}>
               <TouchableOpacity
                 accessible={true}
-                accessibilityLabel="red blackground"
-                accessibilityHint="Allows you to add a black background to the chat"
+                accessibilityLabel="orange blackground"
+                accessibilityHint="Allows you to add a orange background to the chat"
                 accessibilityRole="button"
                 style={styles.color1}
-                onPress={() => this.changeBgColor(this.colors.black)}
+                onPress={() => this.changeBgColor(this.colors.orange)}
               ></TouchableOpacity>
               <TouchableOpacity
                 accessible={true}
-                accessibilityLabel="green blackground"
+                accessibilityLabel="navy blue blackground"
                 accessibilityHint="Allows you to add a navy blue background to the chat"
                 accessibilityRole="button"
                 style={styles.color2}
@@ -77,7 +77,7 @@ export default class Start extends React.Component {
               ></TouchableOpacity>
               <TouchableOpacity
                 accessible={true}
-                accessibilityLabel="gold blackground"
+                accessibilityLabel="light blue blackground"
                 accessibilityHint="Allows you to add a light blue background to the chat"
                 accessibilityRole="button"
                 style={styles.color3}
@@ -85,7 +85,7 @@ export default class Start extends React.Component {
               ></TouchableOpacity>
               <TouchableOpacity
                 accessible={true}
-                accessibilityLabel="pink blackground"
+                accessibilityLabel="light green blackground"
                 accessibilityHint="Allows you to add a light green background to the chat"
                 accessibilityRole="button"
                 style={styles.color4}
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   },
 
   color1: {
-    backgroundColor: "#090C08",
+    backgroundColor: "#FFA686",
     width: 50,
     height: 50,
     borderRadius: 25,
