@@ -106,7 +106,7 @@ export default class Start extends React.Component {
                   bgColor: this.state.bgColor,
                 })
               }
-            >  
+            > 
               <Text style={styles.buttonText}>Start Chatting</Text>
             </Pressable> 
           </View>
