@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Platform, StyleSheet, KeyboardAvoidingView} from 'react-native';
-import { Bubble, SystemMessage, Day, GiftedChat, InputToolbar } from 'react-native-gifted-chat';
+import { View, Platform, StyleSheet, KeyboardAvoidingView, } from 'react-native';
+import { Bubble, SystemMessage, Day, GiftedChat, InputToolbar, } from 'react-native-gifted-chat';
+import MapView from "react-native-maps";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 const firebase = require('firebase');
 require('firebase/firestore');
+import CustomActions from "./CustomActions";
 
 export default class Chat extends React.Component {
   constructor() {
@@ -17,7 +19,9 @@ export default class Chat extends React.Component {
         name: '',
         avatar: '',
       },
-      isConnected: false
+      isConnected: false,
+      image: null,
+      location: null,
     };
 
     //initializes Firestore and brings in the SDK
@@ -35,7 +39,7 @@ export default class Chat extends React.Component {
     //reference to 'messages' collection
     this.referenceChatMessages = firebase.firestore().collection("messages");  
 
-    //this.refMsgsUser = null;
+    this.refMsgsUser = null;
   }
 
   
@@ -73,7 +77,7 @@ export default class Chat extends React.Component {
  }
 
   componentDidMount() {
-    this.getMessages();
+    //this.getMessages();
     //name state from Start.js is assigned to variable name and set to screen title
     let name = this.props.route.params.name;
     this.props.navigation.setOptions({ title: name });
@@ -130,6 +134,8 @@ export default class Chat extends React.Component {
         text: data.text,
         createdAt: data.createdAt.toDate(),
         user: data.user,
+        image: data.image || null,
+        location: data.location || null,
       });
     });
     this.setState({
@@ -159,6 +165,8 @@ export default class Chat extends React.Component {
      text: message.text || '',
      createdAt: message.createdAt,
      user: this.state.user,
+     image: message.image || '',
+     location: message.location || null,
    });
  }
 
@@ -216,6 +224,31 @@ export default class Chat extends React.Component {
     }
   }
 
+  renderCustomActions(props) {
+    return <CustomActions {...props} />;
+  };
+
+  //custom map view
+  renderCustomView(props) {
+    const { currentMessage } = props;
+    if (currentMessage.location) {
+      return (
+        <View style={{ borderRadius: 13, overflow: 'hidden', margin: 3 }}>
+        <MapView
+          style={{ width: 150, height: 100 }}
+          region={{
+            latitude: currentMessage.location.latitude,
+            longitude: currentMessage.location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+        </View>
+      );
+    }
+    return null;
+  }
+
   render() {
     //background color chosen in Start screen is set as const bgColor
     const { bgColor } = this.props.route.params;
@@ -223,10 +256,12 @@ export default class Chat extends React.Component {
     return (
       <View style={{flex:1, backgroundColor: bgColor}}>
         <GiftedChat
+          renderActions={this.renderCustomActions}
           renderDay={this.renderDay.bind(this)}
           renderBubble={this.renderBubble.bind(this)}
           renderSystemMessage={this.renderSystemMessage.bind(this)}
           renderInputToolbar={this.renderInputToolbar.bind(this)}
+          renderCustomView={this.renderCustomView}
           messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
           placeholder= 'Send message'
