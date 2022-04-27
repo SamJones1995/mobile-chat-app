@@ -1,5 +1,14 @@
-import React from 'react';
-import { StyleSheet, View, Text, TextInput, Pressable, ImageBackground, TouchableOpacity, Image } from 'react-native';
+import React from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  ImageBackground,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 
 import BackgroundImage from "../assets/Background-Image.png";
 import userIcon from "../assets/icon.png";
@@ -9,10 +18,10 @@ export default class Start extends React.Component {
     super(props);
 
     this.state = {
-      name: '',
+      name: "",
       bgColor: this.colors.orange,
-    }  
-  };
+    };
+  }
 
   // function to update the bgColor state with the new background color for Chat Screen chosen by the user
   changeBgColor = (newColor) => {
@@ -27,7 +36,6 @@ export default class Start extends React.Component {
   };
 
   render() {
-
     return (
       <View style={styles.container}>
         <ImageBackground
@@ -41,20 +49,17 @@ export default class Start extends React.Component {
 
           <View style={styles.box1}>
             <View style={styles.inputBox}>
-              <Image source={userIcon} style={styles.iconStyle}/>
+              <Image source={userIcon} style={styles.iconStyle} />
               <TextInput
                 style={styles.input}
                 onChangeText={(text) => this.setState({ name: text })}
                 value={this.state.name}
                 placeholder="Enter Username"
               />
-            </View>    
-            
+            </View>
+
             <View style={styles.colorBox}>
-              <Text style={styles.chooseColor}>
-                {" "}
-                Choose a theme:{" "}
-              </Text>
+              <Text style={styles.chooseColor}> Choose a theme: </Text>
             </View>
 
             {/* All the colors to change the background are here! */}
@@ -91,7 +96,6 @@ export default class Start extends React.Component {
                 style={styles.color4}
                 onPress={() => this.changeBgColor(this.colors.green)}
               ></TouchableOpacity>
-              
             </View>
 
             <Pressable
@@ -106,21 +110,21 @@ export default class Start extends React.Component {
                   bgColor: this.state.bgColor,
                 })
               }
-            > 
+            >
               <Text style={styles.buttonText}>Start Chatting</Text>
-            </Pressable> 
+            </Pressable>
           </View>
-        </ImageBackground>   
+        </ImageBackground>
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center'
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   backgroundImage: {
@@ -193,7 +197,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "80%",
-    paddingRight: 60
+    paddingRight: 60,
   },
 
   color1: {
@@ -235,7 +239,7 @@ const styles = StyleSheet.create({
   startButton: {
     width: "88%",
     height: 70,
-    backgroundColor: '#757083',
+    backgroundColor: "#757083",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -249,6 +253,6 @@ const styles = StyleSheet.create({
   iconStyle: {
     height: 20,
     width: 20,
-    marginRight: 10
-  }
+    marginRight: 10,
+  },
 });

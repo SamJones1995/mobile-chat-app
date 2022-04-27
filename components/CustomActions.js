@@ -1,14 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React from "react";
+import PropTypes from "prop-types";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import * as Location from "expo-location";
-import firebase from 'firebase';
-import firestore from 'firebase';
+import firebase from "firebase";
+import firestore from "firebase";
 
 export default class CustomActions extends React.Component {
-    
   pickImage = async () => {
     // permission to access the user device's gallery
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -111,10 +110,10 @@ export default class CustomActions extends React.Component {
 
   onActionPress = () => {
     const options = [
-      'Choose From Library',
-      'Take Picture',
-      'Send Location',
-      'Cancel',
+      "Choose From Library",
+      "Take Picture",
+      "Send Location",
+      "Cancel",
     ];
     const cancelButtonIndex = options.length - 1;
     this.context.actionSheet().showActionSheetWithOptions(
@@ -125,57 +124,58 @@ export default class CustomActions extends React.Component {
       async (buttonIndex) => {
         switch (buttonIndex) {
           case 0:
-            console.log('user wants to pick an image');
+            console.log("user wants to pick an image");
             return this.pickImage();
           case 1:
-            console.log('user wants to take a photo');
+            console.log("user wants to take a photo");
             return this.takePhoto();
           case 2:
-            console.log('user wants to get their location');
+            console.log("user wants to get their location");
             return this.getLocation();
         }
       }
     );
   };
-    
-    render() {
-        return (
-          <TouchableOpacity 
-          accessible={true}
-          accessibilityLabel="More options"
-          accessibilityHint="Let’s you choose to send an image or your geolocation."
-          style={[styles.container]} 
-          onPress={this.onActionPress}>
-            <View style={[styles.wrapper, this.props.wrapperStyle]}>
-              <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
-            </View>
-          </TouchableOpacity>
-        );
-      }
+
+  render() {
+    return (
+      <TouchableOpacity
+        accessible={true}
+        accessibilityLabel="More options"
+        accessibilityHint="Let’s you choose to send an image or your geolocation."
+        style={[styles.container]}
+        onPress={this.onActionPress}
+      >
+        <View style={[styles.wrapper, this.props.wrapperStyle]}>
+          <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-      width: 26,
-      height: 26,
-      marginLeft: 10,
-      marginBottom: 10,
-    },
-    wrapper: {
-      borderRadius: 13,
-      borderColor: '#b2b2b2',
-      borderWidth: 2,
-      flex: 1,
-    },
-    iconText: {
-      color: '#b2b2b2',
-      fontWeight: 'bold',
-      fontSize: 16,
-      backgroundColor: 'transparent',
-      textAlign: 'center',
-    },
-   });
+  container: {
+    width: 26,
+    height: 26,
+    marginLeft: 10,
+    marginBottom: 10,
+  },
+  wrapper: {
+    borderRadius: 13,
+    borderColor: "#b2b2b2",
+    borderWidth: 2,
+    flex: 1,
+  },
+  iconText: {
+    color: "#b2b2b2",
+    fontWeight: "bold",
+    fontSize: 16,
+    backgroundColor: "transparent",
+    textAlign: "center",
+  },
+});
 
-	 CustomActions.contextTypes = {
-		actionSheet: PropTypes.func,
-	};
+CustomActions.contextTypes = {
+  actionSheet: PropTypes.func,
+};
