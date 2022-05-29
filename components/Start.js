@@ -29,10 +29,10 @@ export default class Start extends React.Component {
   };
 
   colors = {
-    orange: "#FFA686",
-    navy: "#474056",
+    orange: "#e76f51",
+    navy: "#264653",
     blue: "#8A95A5",
-    green: "#B9C6AE",
+    green: "#e9c46a",
   };
 
   render() {
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
   },
 
   color1: {
-    backgroundColor: "#FFA686",
+    backgroundColor: "#e76f51",
     width: 50,
     height: 50,
     borderRadius: 25,
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
   },
 
   color2: {
-    backgroundColor: "#474056",
+    backgroundColor: "#264653",
     width: 50,
     height: 50,
     borderRadius: 25,
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   },
 
   color3: {
-    backgroundColor: "#8A95A5",
+    backgroundColor: "#e9c46a",
     width: 50,
     height: 50,
     borderRadius: 25,
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
   },
 
   color4: {
-    backgroundColor: "#B9C6AE",
+    backgroundColor: "#2a9d8f",
     width: 50,
     height: 50,
     borderRadius: 25,
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
   startButton: {
     width: "88%",
     height: 70,
-    backgroundColor: "#757083",
+    backgroundColor: "#f4a261",
     alignItems: "center",
     justifyContent: "center",
   },
