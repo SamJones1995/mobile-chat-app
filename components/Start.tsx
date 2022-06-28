@@ -62,7 +62,7 @@ export default class Start extends React.Component<any, any>  {
               })}
 
               
-            ><Text style={styles.containerText}>Maps</Text>
+            ><Text style={styles.containerText}>Map </Text>
               </Pressable>
               <Pressable
       style={styles.foodButton}
