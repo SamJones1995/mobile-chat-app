@@ -9,24 +9,18 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Start from "./components/Start";
-import LodgingScreen from "./components/LodgingScreen";
-import MapScreen from "./components/MapScreen";
+import Chat from "./components/Chat";
 
 const Stack = createStackNavigator();
 
 export default class App extends React.Component {
-  constructor(props: any) {
+  constructor(props) {
     super(props);
-    this.state = { 
-      text: "",
-      location: null
-     };
+    this.state = { text: "" };
   }
 
-  
-
   // alert the user input
-  alertMyText(input: any = []) {
+  alertMyText(input = []) {
     Alert.alert(input.text);
   }
 
@@ -35,10 +29,7 @@ export default class App extends React.Component {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Start">
           <Stack.Screen name="Start" component={Start} />
-          <Stack.Screen name="Lodging" component={LodgingScreen} />
-          <Stack.Screen name="Maps" component={MapScreen} />
-          
-
+          <Stack.Screen name="Chat" component={Chat} />
         </Stack.Navigator>
       </NavigationContainer>
     );
